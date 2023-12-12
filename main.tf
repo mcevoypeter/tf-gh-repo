@@ -20,6 +20,24 @@ resource "github_repository" "this" {
   topics             = var.topics
 }
 
+resource "github_branch_default" "this" {
+  repository = github_repository.this.name
+  branch     = var.default_branch
+}
+
+resource "github_branch_protection_v3" "this" {
+  repository = github_repository.this.name
+  branch     = github_branch_default.this.branch
+
+  required_status_checks {
+    strict = true
+  }
+  required_pull_request_reviews {
+    dismiss_stale_reviews      = true
+    require_code_owner_reviews = true
+  }
+}
+
 resource "github_repository_collaborator" "pull" {
   for_each   = var.pull_collaborators
   repository = github_repository.this.name
