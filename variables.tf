@@ -63,6 +63,23 @@ variable "admin_collaborators" {
   default     = []
 }
 
+variable "environments" {
+  description = <<EOT
+The repository's environments.
+
+The repository's environments are represented as a map from environment name to
+an object containing the environment's deployment policy, secrets, and variables.
+An environment's secrets/variables are represented as a map from secret/variable
+name to secret/variable value.
+EOT
+  type = map(object({
+    deployment_policy = object({ branch_pattern = string })
+    secrets           = set(object({ name = string, plaintext_value = string }))
+    variables         = set(object({ name = string, value = string }))
+  }))
+  default = {}
+}
+
 variable "gha_access_level" {
   description = <<EOT
 Where the reusable GitHub Actions workflows in the repository may be used. One

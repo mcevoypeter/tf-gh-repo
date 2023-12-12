@@ -10,6 +10,10 @@ The default branch is protected. Pull requests that target the default branch mu
 
 Merge commits are the only allowed form of merge; squash merges and rebase merges are both disallowed. The merge commit title and message are set to the corresponding pull request title and body, respectively.
 
+## Environments
+
+Zero or more environments may be specified with accompanying [GitHub Actions] secrets and variables. Only protected branches that match the environment's deployment policy may deploy to the environment.
+
 ## Issues
 
 Repository issues are turned off.
@@ -24,4 +28,5 @@ This project is licensed under the terms of the [MIT license](https://en.wikiped
 
 [gh-codeowners]: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 [GitHub]: https://github.com
+[GitHub Actions]: https://docs.github.com/en/actions
 [Terraform]: https://www.terraform.io
