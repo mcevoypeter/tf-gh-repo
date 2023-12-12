@@ -88,7 +88,7 @@ resource "github_repository_environment" "this" {
   environment = each.key
   repository  = github_repository.this.name
   deployment_branch_policy {
-    protected_branches     = true
+    protected_branches     = false
     custom_branch_policies = true
   }
 }
