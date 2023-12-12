@@ -19,3 +19,38 @@ resource "github_repository" "this" {
   gitignore_template = var.gitignore_template
   topics             = var.topics
 }
+
+resource "github_repository_collaborator" "pull" {
+  for_each   = var.pull_collaborators
+  repository = github_repository.this.name
+  username   = each.value
+  permission = "pull"
+}
+
+resource "github_repository_collaborator" "push" {
+  for_each   = var.push_collaborators
+  repository = github_repository.this.name
+  username   = each.value
+  permission = "push"
+}
+
+resource "github_repository_collaborator" "maintain" {
+  for_each   = var.maintain_collaborators
+  repository = github_repository.this.name
+  username   = each.value
+  permission = "maintain"
+}
+
+resource "github_repository_collaborator" "triage" {
+  for_each   = var.triage_collaborators
+  repository = github_repository.this.name
+  username   = each.value
+  permission = "triage"
+}
+
+resource "github_repository_collaborator" "admin" {
+  for_each   = var.admin_collaborators
+  repository = github_repository.this.name
+  username   = each.value
+  permission = "admin"
+}

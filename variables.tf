@@ -32,3 +32,33 @@ variable "topics" {
   type        = set(string)
   default     = []
 }
+
+variable "pull_collaborators" {
+  description = "Collaborators with pull access to the repository"
+  type        = set(string)
+  default     = []
+}
+
+variable "push_collaborators" {
+  description = "Collaborators with push access to the repository"
+  type        = set(string)
+  default     = []
+}
+
+variable "maintain_collaborators" {
+  description = "Collaborators with maintain access to the repository"
+  type        = set(string)
+  default     = []
+}
+
+variable "triage_collaborators" {
+  description = "Collaborators with triage access to the repository"
+  type        = set(string)
+  default     = []
+}
+
+variable "admin_collaborators" {
+  description = "Collaborators with admin access to the repository"
+  type        = set(string)
+  default     = []
+}
