@@ -54,3 +54,8 @@ resource "github_repository_collaborator" "admin" {
   username   = each.value
   permission = "admin"
 }
+
+resource "github_actions_repository_access_level" "this" {
+  repository   = github_repository.this.name
+  access_level = var.gha_access_level
+}

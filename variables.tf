@@ -62,3 +62,13 @@ variable "admin_collaborators" {
   type        = set(string)
   default     = []
 }
+
+variable "gha_access_level" {
+  description = <<EOT
+Where the reusable GitHub Actions workflows in the repository may be used. One
+of `none`, `user`, `organization`, or `enterprise`. See
+https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_repository_access_level#access_level."
+EOT
+  type        = string
+  default     = "none"
+}
