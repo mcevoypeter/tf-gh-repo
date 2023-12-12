@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    github = {
+      source  = "integrations/github"
+      version = "~> 5.0"
+    }
+  }
+}
+
 resource "github_repository" "this" {
   name        = var.name
   description = var.description
