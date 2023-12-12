@@ -94,11 +94,13 @@ resource "github_repository_environment" "this" {
 }
 
 resource "github_repository_environment_deployment_policy" "this" {
-  for_each = var.environments
+  for_each = {
+    for env_name, env in var.environments : env_name => env.deployment_policy
+  }
 
   repository     = github_repository.this.name
   environment    = github_repository_environment.this[each.key].environment
-  branch_pattern = each.value["branch_pattern"]
+  branch_pattern = each.value.branch_pattern
 }
 
 resource "github_actions_environment_secret" "this" {
