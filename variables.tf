@@ -63,6 +63,18 @@ variable "admin_collaborators" {
   default     = []
 }
 
+variable "secrets" {
+  description = "GitHub Actions secrets"
+  type        = set(object({ name = string, plaintext_value = string }))
+  default     = []
+}
+
+variable "variables" {
+  description = "GitHub Actions variables"
+  type        = set(object({ name = string, value = string }))
+  default     = []
+}
+
 variable "environments" {
   description = <<EOT
 The repository's environments.

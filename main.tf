@@ -82,6 +82,28 @@ resource "github_repository_collaborator" "admin" {
   permission = "admin"
 }
 
+resource "github_actions_secret" "this" {
+  # See the comment attached to the for_each argument of the
+  # github_actions_environment_secret resource below.
+  for_each = nonsensitive(sensitive({
+    for idx, secret in var.secrets : secret.name => secret.plaintext_value
+  }))
+
+  repository      = github_repository.this.name
+  secret_name     = each.key
+  plaintext_value = each.value
+}
+
+resource "github_actions_variable" "this" {
+  for_each = nonsensitive(sensitive({
+    for idx, variable in var.variables : variable.name => variable.value
+  }))
+
+  repository    = github_repository.this.name
+  variable_name = each.key
+  value         = each.value
+}
+
 resource "github_repository_environment" "this" {
   for_each = var.environments
 
