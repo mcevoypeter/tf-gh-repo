@@ -27,10 +27,6 @@ resource "github_repository" "this" {
 
   gitignore_template = var.gitignore_template
   topics             = var.topics
-
-  lifecycle {
-    ignore_changes = [name]
-  }
 }
 
 resource "github_branch_default" "this" {
