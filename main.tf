@@ -43,7 +43,7 @@ resource "github_branch_protection_v3" "this" {
   }
   required_pull_request_reviews {
     dismiss_stale_reviews      = true
-    require_code_owner_reviews = true
+    require_code_owner_reviews = var.pr_review_required
   }
 }
 

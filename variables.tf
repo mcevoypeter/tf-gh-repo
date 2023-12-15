@@ -21,6 +21,12 @@ variable "default_branch" {
   default     = "main"
 }
 
+variable "pr_review_required" {
+  description = "If true, an approving review is required to merge a PR."
+  type        = bool
+  default     = false
+}
+
 variable "gitignore_template" {
   description = "Name of template from https://github.com/github/gitignore without the extension"
   type        = string
