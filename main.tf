@@ -42,8 +42,9 @@ resource "github_branch_protection_v3" "this" {
     strict = true
   }
   required_pull_request_reviews {
-    dismiss_stale_reviews      = true
-    require_code_owner_reviews = var.pr_review_required
+    dismiss_stale_reviews           = true
+    require_code_owner_reviews      = var.pr_review_required
+    required_approving_review_count = var.pr_review_required ? 1 : 0
   }
 }
 
