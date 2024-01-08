@@ -119,6 +119,7 @@ resource "github_repository_environment" "this" {
 resource "github_repository_environment_deployment_policy" "this" {
   for_each = {
     for env_name, env in var.environments : env_name => env.deployment_policy
+    if env.deployment_policy != null
   }
 
   repository     = github_repository.this.name
